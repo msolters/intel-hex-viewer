@@ -1,6 +1,7 @@
 import sys
 
 def parse_hex_line( line ):
+    if len( current_line ) == 0: return
     bytecount = int( line[0:2], 16 )
     address = int( line[2:6], 16 )
     rec_type = int( line[6:8], 16 )
@@ -19,7 +20,6 @@ def parse_hex_line( line ):
         rec_output += '(extended linear address)'
     elif rec_type == 5:
         rec_output += '(start linear address)'
-
     print rec_output
 
 #   (1) Open the Hex File
@@ -34,12 +34,12 @@ try:
     while byte != "":
         byte = hex_file.read(1)
         if byte == ":":
-            #   (1) If we have built a line, parse it!
-            if len( current_line ) > 0:
-                parse_hex_line( current_line )
+            #   (1) Parse the current line!
+            parse_hex_line( current_line )
             #   (2) Reset the current line to build the next one!
             current_line = ""
         else:
             current_line += byte
+    parse_hex_line( current_line )
 finally:
     hex_file.close()
