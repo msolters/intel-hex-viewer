@@ -1,5 +1,5 @@
 # intel-hex-viewer
-Sometimes you have an Intel HEX file, but you want to view the contents as if it were raw sequential binary.  This command-line utility does just that.  It's basically `hexdump` for actual .hex files!
+Sometimes you have an [Intel HEX](https://en.wikipedia.org/wiki/Intel_HEX) file, but you want to view the contents as if it were raw sequential binary.  This command-line utility does just that.  It's basically `hexdump` for actual .hex files!
 
 ## Usage
 
