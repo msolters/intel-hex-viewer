@@ -9,7 +9,7 @@ def parse_hex_line( line ):
     rec_output = str(hex(address)) + '\t(' + str(bytecount) + ')\t'
     if rec_type == 0:
         rec_output += '(data)'
-        rec_output += '\t\t' + line[8:(8+2*(bytecount))]
+        rec_output += '\t\t\t\t' + line[8:(8+2*(bytecount))]
     elif rec_type == 1:
         rec_output += '(end of file)'
     elif rec_type == 2:
@@ -18,6 +18,7 @@ def parse_hex_line( line ):
         rec_output += '(start segment address)'
     elif rec_type == 4:
         rec_output += '(extended linear address)'
+        rec_output += '\t' + line[8:(8+2*(bytecount))]
     elif rec_type == 5:
         rec_output += '(start linear address)'
     print rec_output
