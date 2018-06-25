@@ -1,12 +1,16 @@
 import sys
 
+current_addr = 0
+
 def parse_hex_line( line ):
     if len( current_line ) == 0: return
     bytecount = int( line[0:2], 16 )
     address = int( line[2:6], 16 )
     rec_type = int( line[6:8], 16 )
 
-    rec_output = str(hex(address)) + '\t(' + str(bytecount) + ')\t'
+    global current_addr
+
+    rec_output = str(hex(address + current_addr)) + '\t(' + str(bytecount) + ')\t'
     if rec_type == 0:
         rec_output += '(data)'
         rec_output += '\t\t' + line[8:(8+2*(bytecount))]
@@ -17,7 +21,8 @@ def parse_hex_line( line ):
     elif rec_type == 3:
         rec_output += '(start segment address)'
     elif rec_type == 4:
-        rec_output += '(extended linear address)'
+        current_addr = int(line[8:12], 16) <<16
+        rec_output += '(extended linear address) ' + str(hex(current_addr))
     elif rec_type == 5:
         rec_output += '(start linear address)'
     print rec_output
