@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 
 def parse_hex_line( line ):
@@ -20,11 +21,11 @@ def parse_hex_line( line ):
         rec_output += '(extended linear address)'
     elif rec_type == 5:
         rec_output += '(start linear address)'
-    print rec_output
+    print( rec_output )
 
 #   (1) Open the Hex File
 hex_file_path = sys.argv[1]
-print "Parsing " + hex_file_path
+print( "Parsing " + hex_file_path )
 hex_file = open(hex_file_path, "rb")
 
 #   (2) Analyze the hex file line by line
@@ -32,7 +33,7 @@ current_line = ""
 try:
     byte = "1" # initial placeholder
     while byte != "":
-        byte = hex_file.read(1)
+        byte = hex_file.read(1).decode('utf-8')
         if byte == ":":
             #   (1) Parse the current line!
             parse_hex_line( current_line )
