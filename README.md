@@ -4,7 +4,7 @@ Sometimes you have an [Intel HEX](https://en.wikipedia.org/wiki/Intel_HEX) file,
 ## Usage
 
 ```bash
-python view-hex.py my-hex-file.hex
+python3 view-hex.py my-hex-file.hex
 ```
 
 ## Example Output
